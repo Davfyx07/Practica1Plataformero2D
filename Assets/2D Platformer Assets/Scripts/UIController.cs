@@ -1,33 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-
-    public static UIController Instance;
+    public static UIController instance;
 
     public Image heart1, heart2, heart3;
 
     public Sprite heartFull, heartEmpty, heartHalf;
+    public TextMeshProUGUI gemText;
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        UpdateGemCount();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void UpdateHealtDisplay()
     {
@@ -83,5 +78,12 @@ public class UIController : MonoBehaviour
                 break;
         }
     }
+
+    public void UpdateGemCount()
+    {
+        gemText.text = LevelManager.instance.gemsCollected.ToString();
+
+    }
+
 
 }

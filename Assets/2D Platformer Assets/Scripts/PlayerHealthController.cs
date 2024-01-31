@@ -9,6 +9,7 @@ public class PlayerHealthController : MonoBehaviour
     public float invincibleLeght;
     private float invincibleCounter;
     private SpriteRenderer theSR;
+    public GameObject deathEffect;
 
     private void Awake()
     {
@@ -41,10 +42,19 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealt--;
             PlayerController.instance.anim.SetTrigger("Hurt");
+            AudioManager.instance.PlaySFX(9);
+
 
             if (currentHealt <= 0)
             {
-                gameObject.SetActive(false);
+                currentHealt = 0;
+
+                Instantiate(deathEffect, PlayerController.instance.transform.position, PlayerController.instance.transform.rotation);
+                AudioManager.instance.PlaySFX(8);
+
+                LevelManager.instance.RespawnPlayer();
+                
+                // gameObject.SetActive(false);
             }
             else
             {
@@ -53,9 +63,20 @@ public class PlayerHealthController : MonoBehaviour
                 PlayerController.instance.KnockBack();
             }
 
-            UIController.Instance.UpdateHealtDisplay();
+            UIController.instance.UpdateHealtDisplay();
         }
 
 
+    }
+
+    public void HealPlayer()
+    {
+        currentHealt++;
+        if (currentHealt > maxHealth)
+        {
+            currentHealt = maxHealth;
+        }
+
+        UIController.instance.UpdateHealtDisplay();
     }
 }
