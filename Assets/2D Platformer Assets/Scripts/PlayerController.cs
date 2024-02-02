@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public float KnockBackLeght, KnockBackForce;
     private float KnockBackCouter;
-
+    public bool stopInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
    
     void Move()
     {
-        if (!PauseMenu.instance.isPaused) 
+        if (!PauseMenu.instance.isPaused && !stopInput) 
         {
             if (KnockBackCouter <= 0)
             {

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2D Platformer Assets/Scenes/LevelSelect.unity
     guid: c2ec8477915cfca44a02588da371d359
+  - enabled: 1
+    path: Assets/2D Platformer Assets/Scenes/Test.unity
+    guid: 2d846ab8cb2a0104eb52275528cc129f
   m_configObjects: {}
